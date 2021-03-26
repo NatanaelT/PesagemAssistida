@@ -32,14 +32,14 @@
       </figure>
     </div>
     <h1 style="font-size: large;"> Iniciar sessão </h1>
-    <form class="needs-validation" novalidate onsubmit="validate();return false;">
+    <form class="needs-validation" action="/login" method="POST">
       <div id="inputs">
         <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="username" placeholder="Usuario">
+          <input type="email" class="form-control" id="username" name="email" placeholder="Usuario">
           <label for="floatingInput">Usuário</label>
         </div>
         <div class="form-floating">
-          <input type="password" class="form-control" required id="password" placeholder="Senha">
+          <input type="password" class="form-control" required id="password" name="password" placeholder="Senha">
           <label for="floatingPassword">Senha</label>
           <div class="invalid-feedback">
             Usuário ou senha incorretos

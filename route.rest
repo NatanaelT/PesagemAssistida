@@ -8,17 +8,17 @@ POST http://localhost:3000/usuarios
 Content-Type: application/json
 
 {
-        "nome": "Natanael Toni",
+        "nome": "Natanael Toniazzo",
         "funcao": "Auxiliar de qualidade",
         "cpf": 11010287931,
         "email": "natanael.toniazzo@gmail.com",
-        "senha": "123456",
+        "password": "123456",
         "telefone": 49998293621,
         "isAdmin": true
 }
 
 ###
-DELETE http://localhost:3000/usuarios/605cdd52c0afa808e0ec4204
+DELETE http://localhost:3000/usuarios/605e21e262c9d219d461d5c6
 
 ###
 PATCH http://localhost:3000/usuarios/605cdd52c0afa808e0ec4204
@@ -26,4 +26,12 @@ Content-Type: application/json
 
 {
     "nome": "Natanael Atualizado"
+}
+
+###
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "email": "natanael.toniazzo@gmail.com"
 }
