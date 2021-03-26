@@ -22,12 +22,10 @@ var app = express();
 app.use(session({
     secret: 'teste',
     resave: true,
-    saveUnitialized: false
+    saveUninitialized: true
 }))
-
 app.use(passport.initialize())
 app.use(passport.session())
-
 app.use(flash())
 
 app.use(logger('dev'));
