@@ -6,6 +6,7 @@ const mongoose = require('mongoose')
 
 var indexRouter = require('./routes/index');
 var usuariosRouter = require('./routes/usuarios');
+var homeRouter = require('./routes/home');
 
 var app = express();
 
@@ -19,10 +20,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static('public'))
 
 app.use('/', indexRouter);
 app.use('/usuarios', usuariosRouter);
-
+app.use('/home', homeRouter);
 
 
 module.exports = app;
