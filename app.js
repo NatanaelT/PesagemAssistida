@@ -37,6 +37,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/login', loginRouter);
 app.use('/usuarios', usuariosRouter);
-app.use('/home', homeRouter);
+// app.use('/', homeRouter);
 
 module.exports = app;

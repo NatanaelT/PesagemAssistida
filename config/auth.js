@@ -5,17 +5,16 @@ const Usuario = require('../models/usuario')
 
 module.exports = function (passport) {
     passport.use(new localStrategy({ usernameField: 'email' }, (email, password, done) => {
-        console.log('passport')
         Usuario.findOne({ email: email }).then((usuario) => {
             if (!usuario) {
-                return done(null, false, { message: 'Usuario nao existe' })
+                return done(null, false)
             }
 
             bcrypt.compare(password, usuario.password, (erro, batem) => {
                 if (batem) {
                     return done(null, usuario)
                 } else {
-                    return done(null, false, { message: 'senha incorreta' })
+                    return done(null, false)
                 }
 
             })
