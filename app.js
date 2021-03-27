@@ -37,6 +37,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/login', loginRouter);
 app.use('/usuarios', usuariosRouter);
-// app.use('/', homeRouter);
+app.use('/', homeRouter);
+
+app.get('/logout', function (req, res){
+  req.session.destroy(function (err) {
+      console.log('aqui')
+    res.redirect('/login'); //Inside a callback… bulletproof!
+  });
+});
 
 module.exports = app;

@@ -17,7 +17,6 @@ router.get('/', function (req, res, next) {
 // );
 router.post('/', function (req, res, next) {
   passport.authenticate('local', function (err, user, info) {
-    console.log(user)
     if (err) {
       return next(err);
     } if (!user) {
@@ -29,12 +28,6 @@ router.post('/', function (req, res, next) {
       return res.redirect('/');
     });
   })(req, res, next);
-});
-
-router.get('/logout', function (req, res) {
-  req.session.destroy(function (err) {
-    res.redirect('/');
-  });
 });
 
 module.exports = router;
