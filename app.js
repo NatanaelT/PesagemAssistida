@@ -23,22 +23,27 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
 
 
 app.use('/login', loginRouter)
 app.use('/usuarios', authenticateToken, usuariosRouter);
-app.use('/', authenticateToken, homeRouter);
+app.use('/home', authenticateToken, homeRouter);
 
 function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization']
-  const token = authHeader && authHeader.split(' ')[1]
-  if (token == null) return res.sendStatus(401)
+  const tokenHeader = authHeader && authHeader.split(' ')[1]
+  const tokenCookies = req.cookies.token
+  let decoded
+  if (tokenHeader == null)
+    decoded = jwt.verify(tokenCookies, process.env.ACCESS_TOKEN_SECRET);
+  if(tokenCookies == null)
+    decoded = jwt.verify(tokenHeader, process.env.ACCESS_TOKEN_SECRET);
+  if(tokenCookies == null && tokenHeader == null)
+    return res.sendStatus(401)
 
-  const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
   req.user = decoded;
-
-  if (!req.user.isAdmin) {
+  if (!decoded.usuario.isAdmin) {
     return res.sendStatus(403)
   }
   next()

@@ -13,16 +13,15 @@ router.get('/', function (req, res, next) {
 router.post('/', async (req, res) => {
   const usuario = await Usuario.findOne({ email: req.body.email })
   if (usuario == null) {
-    return res.status(400).send('Usuario não encontrado')
+    return res.status(401).send('Usuario não encontrado')
   }
   try {
     if (await bcrypt.compare(req.body.password, usuario.password)) {
-      console.log(usuario)
       jwt.sign({ usuario }, process.env.ACCESS_TOKEN_SECRET, (err, token) => {
-        res.json({ token })
+        res.json({ token: token, usuario: usuario.nome })
       });
     } else {
-      res.send('Usuario ou senha incorretos')
+      res.status(401).send('Usuario ou senha incorretos')
     }
   } catch {
     res.status(500).send()
