@@ -1,0 +1,52 @@
+html, body {
+    height: 100%;
+}
+
+.nav-link:hover {
+    font-weight: bold;
+    color: black;
+}
+
+.nav-link {
+    padding-left: 25px;
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+a.active {
+    font-weight: bold;
+    color: black;
+}
+
+.grupo-cadastro {
+    padding-left: 15px;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+#sidebar {
+    background-color: #e4e6e8;
+    padding: 10px 0px 0px 0px;
+    border-right-width: 1px;
+    border-right-color: #bdbdbd;
+    border-right-style: solid;
+}
+
+.container-fluid {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+
+#first-row {
+    height: 100%;
+}
+
+#bem-vindo-container {
+    top: 25%;
+    position: relative
+}
+
+#bem-vindo-texto {
+    margin-top: 30px
+}

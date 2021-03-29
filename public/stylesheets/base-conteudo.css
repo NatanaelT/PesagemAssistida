@@ -1,0 +1,43 @@
+#header-conteudo {
+    background-color: #e4e6e8;
+    padding: 10px;
+    height: 54px;
+    border-bottom-width: 1px;
+    border-bottom-color: #bdbdbd;
+    border-bottom-style: solid;
+}
+
+#header-conteudo h1 {
+    font-size: x-large;
+    margin: 0px;
+}
+
+#lista-conteudo {
+    height: 100%;
+    width: 100%;
+}
+
+#filtros-conteudo{
+    padding: 20px 10px 0px 10px;
+}
+
+.search-button{
+    background-color: #0d6efd;
+}
+
+.search-button i{
+    color: white
+}
+
+#botao-pesquisar {
+    position: relative;
+    top: 32px;
+}
+
+#botao-novo {
+    float: right;
+}
+
+#botao-novo i {
+    margin-right: 3px;
+}
