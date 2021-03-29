@@ -1,7 +1,8 @@
 GET http://localhost:3000/usuarios
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hdGFuYWVsLnRvbmlhenpvQGdtYWlsLmNvbSIsIm5vbWUiOiJOYXRhbmFlbCBUb25pYXp6byIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2MTcwMzY2NjZ9.eBqDZefgJccOicnwyUfWfYNxDjKXnB9jlBiRhpZ3zQM
 
 ###
-GET http://localhost:3000/usuarios/605cdd30c0afa808e0ec4203
+GET http://localhost:3000/login
 
 ###
 POST http://localhost:3000/usuarios
