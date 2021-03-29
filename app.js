@@ -2,10 +2,6 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var flash = require('connect-flash');
-const session = require('express-session')
-const passport = require('passport')
-require('./config/auth')(passport)
 
 const mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/spricigo', { useNewUrlParser: true, useUnifiedTopology: true })
@@ -18,15 +14,6 @@ var usuariosRouter = require('./routes/usuarios');
 var homeRouter = require('./routes/home');
 
 var app = express();
-//Sessão
-app.use(session({
-    secret: 'teste',
-    resave: true,
-    saveUninitialized: true
-}))
-app.use(passport.initialize())
-app.use(passport.session())
-app.use(flash())
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -44,5 +31,13 @@ app.get('/logout', function (req, res){
     res.redirect('/login'); //Inside a callback… bulletproof!
   });
 });
+
+// app.use(function(req, res, next){
+//   console.log('opa')
+//   if(req.url.match('/usuarios'))
+//     passport.session()(req, res, next)
+//   else
+//     next(); // do not invoke passport
+// });
 
 module.exports = app;
