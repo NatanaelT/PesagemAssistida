@@ -27,7 +27,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use('/login', loginRouter)
-app.use('/usuarios', usuariosRouter);
-app.use('/', homeRouter);
+app.use('/usuarios', authenticateToken, usuariosRouter);
+app.use('/', authenticateToken, homeRouter);
+
+function authenticateToken(req, res, next) {
+  const authHeader = req.headers['authorization']
+  const token = authHeader && authHeader.split(' ')[1]
+  if (token == null) return res.sendStatus(401)
+
+  const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+  req.user = decoded;
+
+  if (!req.user.isAdmin) {
+    return res.sendStatus(403)
+  }
+  next()
+}
 
 module.exports = app;
