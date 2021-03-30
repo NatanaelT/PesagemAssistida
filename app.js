@@ -4,8 +4,6 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-// const Usuario = require('./models/usuario.js')
-
 const mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/spricigo', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
 const db = mongoose.connection
@@ -29,22 +27,23 @@ app.use(express.static('public'));
 app.use('/login', loginRouter)
 app.use('/usuarios', authenticateToken, usuariosRouter);
 app.use('/home', authenticateToken, homeRouter);
+app.use('/', authenticateToken, homeRouter);
 
 function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization']
   const tokenHeader = authHeader && authHeader.split(' ')[1]
   const tokenCookies = req.cookies.token
-  let decoded
-  if (tokenHeader == null)
-    decoded = jwt.verify(tokenCookies, process.env.ACCESS_TOKEN_SECRET);
-  if(tokenCookies == null)
-    decoded = jwt.verify(tokenHeader, process.env.ACCESS_TOKEN_SECRET);
-  if(tokenCookies == null && tokenHeader == null)
+  
+  // if(tokenCookies == null )
+  //   decoded = jwt.verify(tokenHeader, process.env.ACCESS_TOKEN_SECRET);
+  if(!tokenCookies)
     return res.sendStatus(401)
-
+  
+  let decoded = jwt.verify(tokenCookies, process.env.ACCESS_TOKEN_SECRET);
+  console.log(decoded)
   req.user = decoded;
   if (!decoded.usuario.isAdmin) {
-    return res.sendStatus(403)
+    return res.sendStatus(401)
   }
   next()
 }

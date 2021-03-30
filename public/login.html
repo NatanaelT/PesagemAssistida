@@ -32,7 +32,7 @@
       </figure>
     </div>
     <h1 style="font-size: large;"> Iniciar sessão </h1>
-    <form id="login-form" class="needs-validation" novalidate action="/login" method="POST">
+    <form id="login-form" class="needs-validation" novalidate onsubmit="validate(); return false;">
       <div id="inputs">
         <div class="form-floating mb-3">
           <input type="email" class="form-control" id="email" name="email" placeholder="Usuario">

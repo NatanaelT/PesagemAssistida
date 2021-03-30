@@ -21,3 +21,8 @@ function validate() {
       document.getElementById("password").classList.add("is-invalid");
     });
 }
+
+window.onload = () => {
+  if(document.cookie != "" && document.cookie != null && document.cookie != undefined)
+    location.replace('http://localhost:3000/home')
+}
