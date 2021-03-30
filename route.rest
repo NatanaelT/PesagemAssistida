@@ -1,10 +1,10 @@
-GET http://localhost:3000/usuarios
+GET http://localhost:3000/usuarios/
 
 ###
 GET http://localhost:3000/login
 
 ###
-POST http://localhost:3000/usuarios
+POST http://localhost:3000/11010287931
 Content-Type: application/json
 
 {
@@ -17,10 +17,10 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3000/usuarios/605e430f50995d2b10b18919
+DELETE http://localhost:3000/usuarios/11010287931
 
 ###
-PATCH http://localhost:3000/usuarios/605cdd52c0afa808e0ec4204
+PATCH http://localhost:3000/usuarios/123123
 Content-Type: application/json
 
 {

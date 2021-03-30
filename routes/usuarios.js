@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt')
 //getting all
 router.get('/', async (req, res) => {
     try {
-        const usuarios = await Usuario.find()
+        const usuarios = await Usuario.find().select('-__v')
         res.json(usuarios)
     } catch (err) {
         res.status(500).json({ message: err.message })
@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
 })
 
 // //getting one
-router.get('/:id', getUsuario, (req, res) => {
+router.get('/:cpf', getUsuario, (req, res) => {
     res.json(res.usuario)
 })
 
@@ -39,11 +39,10 @@ router.post('/', async (req, res) => {
 })
 
 // //updating one
-router.patch('/:id', getUsuario, async (req, res) => {
+router.patch('/:cpf', getUsuario, async (req, res) => {
+    console.log(req.body)
     if (req.body.nome != null)
         res.usuario.nome = req.body.nome
-    if (req.body.funcao != null)
-        res.usuario.funcao = req.body.funcao
     if (req.body.cpf != null)
         res.usuario.cpf = req.body.cpf
     if (req.body.email != null)
@@ -67,7 +66,7 @@ router.patch('/:id', getUsuario, async (req, res) => {
 })
 
 //deleting one
-router.delete('/:id', getUsuario, async (req, res) => {
+router.delete('/:cpf', getUsuario, async (req, res) => {
     try {
         await res.usuario.remove()
         res.json({ message: 'Usuario removido' })
@@ -80,14 +79,17 @@ router.delete('/:id', getUsuario, async (req, res) => {
 async function getUsuario(req, res, next) {
     let usuario
     try {
-        usuario = await Usuario.findById(req.params.id)
+        console.log('1')
+        usuario = await Usuario.findOne({ cpf: req.params.cpf })
         if (usuario == null) {
+            console.log('2')
             return res.status(404).json({ message: 'Usuario não encontrado' })
         }
     } catch (err) {
+        console.log('3')
         return res.status(500).json({ message: err.message })
     }
-
+    console.log('4')
     res.usuario = usuario
     next()
 }

@@ -62,8 +62,8 @@
             <h1> Usuários </h1>
           </div>
           <div class="col-2">
-            <button id="botao-novo" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-              data-bs-target="#exampleModal">
+            <button id="botao-novo" onclick="setaBotao('novo')" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+              data-bs-target="#modalUsuario">
               <i id="icon-novo" class="bi bi-person-plus"></i>
               Novo
             </button>
@@ -80,7 +80,7 @@
               <input id="input-cpf" type="text" class="form-control" aria-describedby="button-addon1">
             </div>
             <div class="col-1">
-              <button id="botao-pesquisar" onclick="buscar()" type="button" class="btn btn-primary"><i class="bi bi-search"></i></button>
+              <button id="botao-pesquisar" onclick="geraTabela()" type="button" class="btn btn-primary"><i class="bi bi-search"></i></button>
             </div>
           </div>
         </div>
@@ -89,19 +89,11 @@
             <tr>
               <th scope="col">Nome</th>
               <th scope="col">CPF</th>
-              <th scope="col">Função</th>
-              <th scope="col"></th>
-              <th scope="col"></th>
+              <th scope="col">E-mail</th>
+              <th scope="col">Telefone</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>Natanael Toniazzo</td>
-              <td>698.165.460-19</td>
-              <td>Função 1</td>
-              <td><i class="bi bi-pencil-square"></i></td>
-              <td><i class="bi bi-trash"></i></td>
-            </tr>
+          <tbody style="cursor: pointer;">
           </tbody>
         </table>
       </div>
@@ -110,22 +102,19 @@
   </div>
 
   <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="modalUsuario" tabindex="-1" aria-labelledby="modalUsuarioLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Cadastro de usuário</h5>
+            <input hidden id="cpf-editando" value=""></span>
+          <h5 class="modal-title" id="modalUsuarioLabel">Cadastro de usuário</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form class="row g-3">
-            <div class="col-md-6">
+            <div class="col-12">
               <label for="inputNome" class="form-label">Nome</label>
               <input type="text" class="form-control" id="inputNome">
-            </div>
-            <div class="col-md-6">
-              <label for="inputCpf" class="form-label">CPF</label>
-              <input type="text" maxlength="11" class="form-control" id="inputCpf">
             </div>
             <div class="col-12">
               <label for="inputEmail" class="form-label">E-mail</label>
@@ -133,21 +122,17 @@
             </div>
             <div class="col-12">
               <label for="inputPassword" class="form-label">Senha</label>
-              <input type="password" class="form-control" id="inputPassword" placeholder="">
+              <input type="password" class="form-control" placeholder="***************" id="inputPassword" placeholder="">
             </div>
             <div class="col-md-6">
               <label for="inputTelefone" class="form-label">Telefone</label>
               <input type="tel" class="form-control" id="inputTelefone" placeholder="">
             </div>
             <div class="col-md-6">
-              <label for="inputFuncao" class="form-label">Função</label>
-              <select id="inputFuncao" class="form-select">
-                <option selected>Auxiliar de produção</option>
-                <option>Auxiliar de controle de qualidade</option>
-                <option>Limpeza</option>
-              </select>
+              <label for="inputCpf" class="form-label">CPF</label>
+              <input type="text" maxlength="11" class="form-control" id="inputCpf">
             </div>
-            <div class="col-12">
+            <div class="col-6">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="inputAdmin">
                 <label class="form-check-label" for="inputAdmin">
@@ -155,11 +140,19 @@
                 </label>
               </div>
             </div>
+            <div class="col-6">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="inputMudarSenha">
+                <label class="form-check-label" for="inputMudarSenha">
+                  Alterar senha
+                </label>
+              </div>
+            </div>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" onclick="cadastrar()" class="btn btn-primary">Salvar</button>
+          <button id='button-excluir' type="button" class="btn btn-danger" onclick="excluir()">Excluir</button>
+          <button id='button-salvar' type="button" class="btn btn-primary">Salvar</button>
         </div>
       </div>
     </div>

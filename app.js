@@ -28,18 +28,16 @@ app.use(express.static('public'));
 app.use('/login', loginRouter)
 
 app.use('/home', authenticateToken, homeRouter);
-app.use('/', authenticateToken, homeRouter);
+app.use('/', homeRouter);
 
-app.use('/usuarios', authenticateToken, usuariosRouter);
+app.use('/usuarios', usuariosRouter);
 app.use('/usuario', authenticateToken, usuarioRouter);
 
 function authenticateToken(req, res, next) {
-  const authHeader = req.headers['authorization']
-  const tokenHeader = authHeader && authHeader.split(' ')[1]
+  // const authHeader = req.headers['authorization']
+  // const tokenHeader = authHeader && authHeader.split(' ')[1]
   const tokenCookies = req.cookies.token
   
-  // if(tokenCookies == null )
-  //   decoded = jwt.verify(tokenHeader, process.env.ACCESS_TOKEN_SECRET);
   if(!tokenCookies)
     return res.sendStatus(401)
   

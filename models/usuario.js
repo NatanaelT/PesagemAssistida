@@ -6,10 +6,6 @@ const usuarioSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    funcao: {
-        type: String,
-        required: true
-    },
     cpf: {
         type: Number,
         required: true,
