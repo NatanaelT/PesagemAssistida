@@ -21,6 +21,7 @@
 
   <!-- JS Scripts -->
   <script src="javascripts/usuario.js"></script>
+  <script src="javascripts/globalFunctions/sair.js"></script>
 
   <link rel="shortcut icon" href="./images/logo.png" />
   <title>Spricigo · Pesagem Assistida v0.1</title>
@@ -31,14 +32,28 @@
     <div id="first-row" class="row">
       <div id="sidebar" class="col-2">
         <nav class="nav flex-column">
+          <div style="border-bottom-style: solid;border-bottom-width: thin;margin-bottom: 10px; "
+            class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingOne">
+                <button id="nome-usuario" class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne"></button>
+              </h2>
+              <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+                data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                  <a role="button" class="dropdown-item" onclick="sair()"> Sair <i style="float: right;"
+                      class="bi-box-arrow-left"></i> </a>
+                </div>
+              </div>
+            </div>
+          </div>
           <span class="grupo-cadastro">Cadastros</span>
           <a class="nav-link active">Usuários</a>
           <a class="nav-link" href="fornecedor.html">Fornecedores</a>
           <a class="nav-link" href="produto.html">Produtos</a>
           <a class="nav-link" href="recebimento.html">Recebimentos</a>
           <a class="nav-link" href="racao.html">Ração</a>
-          <span class="grupo-cadastro">Produção</span>
-          <a class="nav-link" href="">Pendências</a>
         </nav>
       </div>
       <div id="conteudo" class="col-10">
@@ -47,7 +62,8 @@
             <h1> Usuários </h1>
           </div>
           <div class="col-2">
-            <button id="botao-novo" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button id="botao-novo" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+              data-bs-target="#exampleModal">
               <i id="icon-novo" class="bi bi-person-plus"></i>
               Novo
             </button>
@@ -64,14 +80,13 @@
               <input id="input-cpf" type="text" class="form-control" aria-describedby="button-addon1">
             </div>
             <div class="col-1">
-              <button id="botao-pesquisar" type="button" class="btn btn-primary"><i class="bi bi-search"></i></button>
-          </div>
+              <button id="botao-pesquisar" onclick="buscar()" type="button" class="btn btn-primary"><i class="bi bi-search"></i></button>
+            </div>
           </div>
         </div>
         <table class="table">
           <thead>
             <tr>
-              <th scope="col">ID</th>
               <th scope="col">Nome</th>
               <th scope="col">CPF</th>
               <th scope="col">Função</th>
@@ -81,32 +96,14 @@
           </thead>
           <tbody>
             <tr>
-              <th scope="row">1</th>
               <td>Natanael Toniazzo</td>
               <td>698.165.460-19</td>
               <td>Função 1</td>
               <td><i class="bi bi-pencil-square"></i></td>
               <td><i class="bi bi-trash"></i></td>
             </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Rodrigo da Motta</td>
-              <td>442.501.750-14</td>
-              <td>Função 2</td>
-              <td><i class="bi bi-pencil-square"></i></td>
-              <td><i class="bi bi-trash"></i></td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Davi Spricigo</td>
-              <td>944.719.430-30</td>
-              <td>Função 3</td>
-              <td><i class="bi bi-pencil-square"></i></td>
-              <td><i class="bi bi-trash"></i></td>
-            </tr>
           </tbody>
         </table>
-        <button onclick="buscar()">buscar</button>
       </div>
     </div>
   </div>
@@ -123,28 +120,28 @@
         <div class="modal-body">
           <form class="row g-3">
             <div class="col-md-6">
-              <label for="inputEmail4" class="form-label">Nome</label>
-              <input type="email" class="form-control" id="inputEmail4">
+              <label for="inputNome" class="form-label">Nome</label>
+              <input type="text" class="form-control" id="inputNome">
             </div>
             <div class="col-md-6">
-              <label for="inputPassword4" class="form-label">CPF</label>
-              <input type="password" class="form-control" id="inputPassword4">
+              <label for="inputCpf" class="form-label">CPF</label>
+              <input type="text" maxlength="11" class="form-control" id="inputCpf">
             </div>
             <div class="col-12">
-              <label for="inputCity" class="form-label">E-mail</label>
-              <input type="text" class="form-control" id="inputCity">
+              <label for="inputEmail" class="form-label">E-mail</label>
+              <input type="email" class="form-control" id="inputEmail">
             </div>
             <div class="col-12">
-              <label for="inputAddress2" class="form-label">Senha</label>
-              <input type="text" class="form-control" id="inputAddress2" placeholder="">
+              <label for="inputPassword" class="form-label">Senha</label>
+              <input type="password" class="form-control" id="inputPassword" placeholder="">
             </div>
             <div class="col-md-6">
-              <label for="inputAddress" class="form-label">Telefone</label>
-              <input type="text" class="form-control" id="inputAddress" placeholder="">
+              <label for="inputTelefone" class="form-label">Telefone</label>
+              <input type="tel" class="form-control" id="inputTelefone" placeholder="">
             </div>
             <div class="col-md-6">
-              <label for="inputState" class="form-label">Função</label>
-              <select id="inputState" class="form-select">
+              <label for="inputFuncao" class="form-label">Função</label>
+              <select id="inputFuncao" class="form-select">
                 <option selected>Auxiliar de produção</option>
                 <option>Auxiliar de controle de qualidade</option>
                 <option>Limpeza</option>
@@ -152,8 +149,8 @@
             </div>
             <div class="col-12">
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck">
-                <label class="form-check-label" for="gridCheck">
+                <input class="form-check-input" type="checkbox" id="inputAdmin">
+                <label class="form-check-label" for="inputAdmin">
                   Admin
                 </label>
               </div>
@@ -162,7 +159,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary">Salvar</button>
+          <button type="button" onclick="cadastrar()" class="btn btn-primary">Salvar</button>
         </div>
       </div>
     </div>

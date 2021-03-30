@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="stylesheets/indexAdmin.css" />
 
   <script src="javascripts/home.js"></script>
+  <script src="javascripts/globalFunctions/sair.js"></script>
   <link rel="shortcut icon" href="./images/logo.png" />
   <title>Spricigo · Pesagem Assistida v0.1</title>
 </head>
@@ -27,14 +28,29 @@
     <div style="height: 100%;" class="row">
       <div id="sidebar" class="col-2">
         <nav class="nav flex-column">
+          <div style="border-bottom-style: solid;border-bottom-width: thin;margin-bottom: 10px;" class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingOne">
+                <button id="nome-usuario" class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne"></button>
+              </h2>
+              <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+                data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                  <a role="button" class="dropdown-item" onclick="sair()"> Sair <i style="float: right;"
+                      class="bi-box-arrow-left"></i> </a>
+                </div>
+              </div>
+            </div>
+          </div>
           <span class="grupo-cadastro">Cadastros</span>
           <a class="nav-link" href="usuario.html">Usuários</a>
           <a class="nav-link" href="fornecedor.html">Fornecedores</a>
           <a class="nav-link" href="produto.html">Produtos</a>
           <a class="nav-link" href="recebimento.html">Recebimentos</a>
           <a class="nav-link" href="racao.html">Ração</a>
-          <span class="grupo-cadastro">Produção</span>
-          <a class="nav-link" href="">Pendências</a>
+          <!-- <span class="grupo-cadastro">Produção</span>
+          <a class="nav-link" href="">Pendências</a> -->
         </nav>
       </div>
       <div class="col-10">

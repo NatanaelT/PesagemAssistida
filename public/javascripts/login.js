@@ -23,6 +23,7 @@ function validate() {
 }
 
 window.onload = () => {
-  if(document.cookie != "" && document.cookie != null && document.cookie != undefined)
+  if(document.cookie != "" && document.cookie != null && document.cookie != undefined && document.cookie != "token="){
     location.replace('http://localhost:3000/home')
+  }
 }

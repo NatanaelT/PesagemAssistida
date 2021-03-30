@@ -1,9 +1,3 @@
-function logout() {
-    fetch('http://localhost:3000/logout').then(function (response) {
-        return response.json();
-    }).then(function (data) {
-        console.log(data);
-    }).catch(function () {
-        console.log("Booo");
-    });
+window.onload = () => {
+    document.getElementById('nome-usuario').innerText = localStorage.getItem('usuario')
 }

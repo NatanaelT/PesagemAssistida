@@ -10,8 +10,9 @@ const db = mongoose.connection
 db.on('error', (error) => console.log(error))
 
 const loginRouter = require('./routes/login');
-const usuariosRouter = require('./routes/usuarios');
 const homeRouter = require('./routes/home');
+const usuariosRouter = require('./routes/usuarios');
+const usuarioRouter = require('./routes/usuario');
 
 const jwt = require('jsonwebtoken')
 
@@ -25,9 +26,12 @@ app.use(express.static('public'));
 
 
 app.use('/login', loginRouter)
-app.use('/usuarios', authenticateToken, usuariosRouter);
+
 app.use('/home', authenticateToken, homeRouter);
 app.use('/', authenticateToken, homeRouter);
+
+app.use('/usuarios', authenticateToken, usuariosRouter);
+app.use('/usuario', authenticateToken, usuarioRouter);
 
 function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization']
@@ -40,7 +44,6 @@ function authenticateToken(req, res, next) {
     return res.sendStatus(401)
   
   let decoded = jwt.verify(tokenCookies, process.env.ACCESS_TOKEN_SECRET);
-  console.log(decoded)
   req.user = decoded;
   if (!decoded.usuario.isAdmin) {
     return res.sendStatus(401)
