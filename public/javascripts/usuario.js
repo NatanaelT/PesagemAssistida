@@ -15,6 +15,8 @@ async function geraTabela() {
     }
   }
 
+  document.getElementById('spinner').style.display = "block"
+
   for (var i = 0; i < usuarios.length; i++) {
     var usuario = usuarios[i];
     delete usuario._id
@@ -34,6 +36,8 @@ async function geraTabela() {
     linha[i].setAttribute('data-bs-target', '#modalUsuario');
     linha[i].addEventListener('click', modalEdicao)
   }
+
+  document.getElementById('spinner').style.display = "none"
 }
 
 function setaBotao(caller) {

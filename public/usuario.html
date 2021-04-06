@@ -62,8 +62,8 @@
             <h1> Usuários </h1>
           </div>
           <div class="col-2">
-            <button id="botao-novo" onclick="setaBotao('novo')" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-              data-bs-target="#modalUsuario">
+            <button id="botao-novo" onclick="setaBotao('novo')" type="button" class="btn btn-primary btn-sm"
+              data-bs-toggle="modal" data-bs-target="#modalUsuario">
               <i id="icon-novo" class="bi bi-person-plus"></i>
               Novo
             </button>
@@ -80,7 +80,8 @@
               <input id="input-cpf" type="text" class="form-control" aria-describedby="button-addon1">
             </div>
             <div class="col-1">
-              <button id="botao-pesquisar" onclick="geraTabela()" type="button" class="btn btn-primary"><i class="bi bi-search"></i></button>
+              <button id="botao-pesquisar" onclick="geraTabela()" type="button" class="btn btn-primary"><i
+                  class="bi bi-search"></i></button>
             </div>
           </div>
         </div>
@@ -94,8 +95,14 @@
             </tr>
           </thead>
           <tbody style="cursor: pointer;">
+
           </tbody>
         </table>
+        <div id="spinner" style="display: block;" class="text-center">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -106,7 +113,7 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-            <input hidden id="cpf-editando" value=""></span>
+          <input hidden id="cpf-editando" value=""></span>
           <h5 class="modal-title" id="modalUsuarioLabel">Cadastro de usuário</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
@@ -122,7 +129,8 @@
             </div>
             <div class="col-12">
               <label for="inputPassword" class="form-label">Senha</label>
-              <input type="password" class="form-control" placeholder="***************" id="inputPassword" placeholder="">
+              <input type="password" class="form-control" placeholder="***************" id="inputPassword"
+                placeholder="">
             </div>
             <div class="col-md-6">
               <label for="inputTelefone" class="form-label">Telefone</label>
